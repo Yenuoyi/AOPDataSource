@@ -1,0 +1,27 @@
+#logging日志配置
+logging:
+  level:
+    root: WARN
+    org:
+      springframework:
+        web: DEBUG
+##指向mapper的xml文件位置
+mybatis:
+    # 配置mapper的扫描，找到所有的mapper.xml映射文件
+    mapperLocations: classpath:mybatis/mapper/*.xml
+    # 加载全局的配置文件
+    configLocation: mybatis/mybatis-config.xml
+spring:
+  datasource:
+  ## master 数据源配置
+    master:
+      url: jdbc:mysql://***.**.**.**:3306/NIHAO?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+      username: root
+      password: 123456
+      driverClassName: com.mysql.jdbc.Driver
+## cluster 数据源配置
+    slave:
+      url: jdbc:mysql://***.**.**.**:3306/NIHAO?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+      username: root
+      password: 123456
+      driverClassName: com.mysql.jdbc.Driver
