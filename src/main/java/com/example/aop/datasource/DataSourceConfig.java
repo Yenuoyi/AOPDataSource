@@ -5,6 +5,8 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.annotation.MapperScan;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -23,18 +25,26 @@ import java.util.Map;
 
 /**
  * 数据源配置
+ * @author yebing
  */
 @Configuration
 @EnableTransactionManagement
 @MapperScan(basePackages = {"com.example.aop.dao"}, sqlSessionFactoryRef   = "sqlSessionFactory")
 public class DataSourceConfig {
-    //  配置mapper的扫描，找到所有的mapper.xml映射文件
+    /**
+     * 配置mapper的扫描，找到所有的mapper.xml映射文件
+     */
     @Value("${mybatis.mapperLocations}")
     private String mapperLocations;
 
-    //  加载全局的配置文件
+
+    /**
+     * 加载全局的配置文件
+     */
     @Value("${mybatis.configLocation}")
     private String configLocation;
+
+
     /**
      * 生成主数据源bean，通过@ConfigurationProperties导入数据源配置
      * @return
@@ -70,8 +80,8 @@ public class DataSourceConfig {
         dynamicDataSource.setDefaultTargetDataSource(masterDataSource());
         // 配置多数据源
         Map<Object, Object> dsMap = new HashMap(2);
-        dsMap.put("masterDataSource", masterDataSource());
-        dsMap.put("slaveDataSource", slaveDataSource());
+        dsMap.put(DataSourceName.MASTER.getName(), masterDataSource());
+        dsMap.put(DataSourceName.SLAVE.getName(), slaveDataSource());
         dynamicDataSource.setTargetDataSources(dsMap);
         return dynamicDataSource;
     }
@@ -103,7 +113,8 @@ public class DataSourceConfig {
      */
     @Bean
     public SqlSessionTemplate sqlSessionTemplate(@Qualifier("sqlSessionFactory") SqlSessionFactory sqlSessionFactory) throws Exception {
-        SqlSessionTemplate template = new SqlSessionTemplate(sqlSessionFactory); // 使用上面配置的Factory
+        /* 使用上面配置的Factory */
+        SqlSessionTemplate template = new SqlSessionTemplate(sqlSessionFactory);
         return template;
     }
 

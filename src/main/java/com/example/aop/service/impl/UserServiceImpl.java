@@ -1,6 +1,8 @@
 package com.example.aop.service.impl;
 
 import com.example.aop.dao.UserDao;
+import com.example.aop.datasource.DataSource;
+import com.example.aop.datasource.DataSourceName;
 import com.example.aop.entity.UserBean;
 import com.example.aop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import java.util.List;
 
 @Service
 @Transactional
+@DataSource("SLAVE-DATASOURCE")
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserDao userDao;
@@ -31,6 +34,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @DataSource("SLAVE-DATASOURCE")
     public List<UserBean> getAllUser() {
         return userDao.getAllUser();
     }

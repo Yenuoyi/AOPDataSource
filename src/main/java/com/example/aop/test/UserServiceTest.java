@@ -21,7 +21,5 @@ public class UserServiceTest {
         userBean.setPassword("111111");
         userService.insertUser(userBean);
         System.out.println(userService.getAllUser());
-        System.out.println(userService.insertUser(userBean));
-        System.out.println(userService.getAllUser());
     }
 }

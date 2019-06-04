@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.example</groupId>
-	<artifactId>aop</artifactId>
+	<artifactId>aop-datasource</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>aop</name>
+	<name>aop-datasource</name>
 	<description>Demo project for Spring Boot</description>
 
 	<parent>

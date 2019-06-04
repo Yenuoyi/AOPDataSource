@@ -15,13 +15,13 @@ spring:
   datasource:
   ## master 数据源配置
     master:
-      url: jdbc:mysql://***.**.**.**:3306/NIHAO?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+      url: jdbc:mysql://localhost:3306/datasource-one?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
       username: root
       password: 123456
       driverClassName: com.mysql.jdbc.Driver
 ## cluster 数据源配置
     slave:
-      url: jdbc:mysql://***.**.**.**:3306/NIHAO?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+      url: jdbc:mysql://localhost:3306/datasource-two?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
       username: root
       password: 123456
       driverClassName: com.mysql.jdbc.Driver
